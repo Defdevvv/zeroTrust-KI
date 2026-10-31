@@ -1,0 +1,23 @@
+{
+  "name": "zero-trust-nilai",
+  "version": "1.0.0",
+  "description": "Sistem Nilai dengan arsitektur Zero Trust (API Gateway sebagai PEP, NIST SP 800-207)",
+  "private": true,
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "seed": "node scripts/seed.js",
+    "start": "node scripts/start-all.js",
+    "start:gateway": "node gateway/index.js",
+    "start:nilai": "node service-nilai/index.js",
+    "start:transkrip": "node service-transkrip/index.js",
+    "audit": "node scripts/show-audit.js",
+    "test": "node tests/e2e.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "http-proxy-middleware": "^3.0.3",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
