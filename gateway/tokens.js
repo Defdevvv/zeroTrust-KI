@@ -32,15 +32,29 @@ const selRefresh = db.prepare('SELECT * FROM refresh_tokens WHERE token_hash = ?
 const revokeOne = db.prepare('UPDATE refresh_tokens SET revoked = 1 WHERE id = ?');
 const revokeAll = db.prepare('UPDATE refresh_tokens SET revoked = 1 WHERE user_id = ?');
 
-function issueRefresh(userId, deviceId) {
+async function issueRefresh(userId, deviceId) {
   const raw = crypto.randomBytes(48).toString('base64url');
-  insRefresh.run(userId, sha256(raw), deviceId, Date.now() + config.refreshTtlMs, new Date().toISOString());
-  return raw;
+  const createdAt = new Date().toISOString().replace('T', ' ').replace('Z', '');
+  return insRefresh.run(userId, sha256(raw), deviceId, Date.now() + config.refreshTtlMs, createdAt)
+    .then(() => raw);
+}
+
+async function rotateRefresh(id, userId, deviceId) {
+  const raw = crypto.randomBytes(48).toString('base64url');
+  const createdAt = new Date().toISOString().replace('T', ' ').replace('Z', '');
+  return db.transaction(async (tx) => {
+    const updated = await tx.prepare('UPDATE refresh_tokens SET revoked = 1 WHERE id = ? AND revoked = 0').run(id);
+    if (!updated.affectedRows) return null;
+    await tx.prepare(
+      'INSERT INTO refresh_tokens(user_id, token_hash, device_id, expires_at, revoked, created_at) VALUES (?,?,?,?,0,?)',
+    ).run(userId, sha256(raw), deviceId, Date.now() + config.refreshTtlMs, createdAt);
+    return raw;
+  });
 }
 const findRefresh = (raw) => selRefresh.get(sha256(raw));
 
 module.exports = {
-  signAccess, signService, issueRefresh, findRefresh,
+  signAccess, signService, issueRefresh, rotateRefresh, findRefresh,
   revokeRefresh: (id) => revokeOne.run(id),
   revokeAllForUser: (userId) => revokeAll.run(userId),
 };

@@ -1,0 +1,1350 @@
+{
+  "item": [
+    {
+      "id": "ebf34d3e-0ce2-4df8-8647-216f527c1eae",
+      "name": "Laragon E2E",
+      "item": [
+        {
+          "id": "5bf63176-6b5f-40d5-b69c-070e0cc35917",
+          "name": "Login dosen1",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{dosen1_username}}\",\n  \"password\": \"{{dosen1_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c635e8f8-8c7d-4c9f-9f9c-867f76c91988",
+          "name": "Login mahasiswa mhs1",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{mhs1_device}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{mhs1_username}}\",\n  \"password\": \"{{mhs1_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "8c5d5c63-304a-474c-b49c-3e9d362bc11a",
+          "name": "Login mahasiswa mhs2",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{mhs2_device}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{mhs2_username}}\",\n  \"password\": \"{{mhs2_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "3192d749-3915-4a79-9fe9-7f40f4ea384d",
+          "name": "Login dosen2",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen2_device}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{dosen2_username}}\",\n  \"password\": \"{{dosen2_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "55e72820-6a8c-4e9f-88d5-84f96a4c360c",
+          "name": "Login admin",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{admin_device}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{admin_username}}\",\n  \"password\": \"{{admin_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c06cd55c-6e28-47cb-8588-511f1723e119",
+          "name": "Login password salah",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{dosen1_username}}\",\n  \"password\": \"invalid-password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "64f06032-71e6-413c-abc8-f50376755b7b",
+          "name": "Login device salah",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "DEV-ASING-99"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{dosen1_username}}\",\n  \"password\": \"{{dosen1_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "3eca27fa-6faf-4a64-9301-c84e44fd2e8b",
+          "name": "Refresh token dosen",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "refresh"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh_token\": \"{{dosen_refresh_token}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "33db9bba-092f-4f32-8713-d40a37a2e6eb",
+          "name": "Logout dosen",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "logout"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh_token\": \"{{dosen_refresh_token}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "37d886a3-0a1e-4955-aec7-c206126809d1",
+          "name": "Nilai tanpa token",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-Device-ID",
+                "value": "{{mhs1_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "eb45f204-32bb-4d68-83c9-705e74bccef5",
+          "name": "Nilai mahasiswa sendiri",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{mhs1_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "7ed5897e-0aba-41a3-a828-3d5c31e376a1",
+          "name": "Mahasiswa membaca NIM lain",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [
+                {
+                  "key": "nim",
+                  "value": "227006002"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{mhs1_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "19b3acfe-2845-4b84-ba23-cb27c34ab418",
+          "name": "Nilai dosen1",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{dosen_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "16338d5b-5d4e-4ba7-8744-1b924468241c",
+          "name": "Dosen membaca kelas dosen2",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [
+                {
+                  "key": "kelas_id",
+                  "value": "2"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{dosen_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "1d308b10-cd2e-4018-8ee0-b05597d7c95b",
+          "name": "Admin membaca nilai",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{admin_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "da8185ab-986f-45bc-b095-a4bbb8da05a3",
+          "name": "Dosen2 mengubah nilai dosen1",
+          "request": {
+            "url": {
+              "path": [
+                "nilai",
+                "{{nilai_id}}"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{dosen2_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen2_device}}"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nilai_angka\": 90\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "8a2f8cef-44ce-48f8-9d02-57fec1d8654b",
+          "name": "Dosen mengubah nilai",
+          "request": {
+            "url": {
+              "path": [
+                "nilai",
+                "{{nilai_id}}"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{dosen_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nilai_angka\": 90\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "c1d39c27-e009-44c3-9caa-45e4c56bdec5",
+          "name": "Nilai di luar rentang",
+          "request": {
+            "url": {
+              "path": [
+                "nilai",
+                "{{nilai_id}}"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{dosen_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nilai_angka\": 101\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "89cf4bad-f94f-4f57-b634-3ae37bdbb147",
+          "name": "Device tidak terdaftar",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "DEV-ASING-99"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "edb080cc-bd09-4521-ad23-9d202a31b99e",
+          "name": "Device hilang",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "de7e3a37-d214-463f-94db-d6fb14d32f3d",
+          "name": "Endpoint tidak dikenal",
+          "request": {
+            "url": {
+              "path": [
+                "endpoint-tidak-terdaftar"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{mhs1_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "e7e03979-db06-4082-b430-cfda2640bb23",
+          "name": "Secret client ditimpa gateway",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{mhs1_device}}"
+              },
+              {
+                "key": "X-Gateway-Secret",
+                "value": "nilai-tidak-valid-dari-client"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "e78e1aa0-885c-4f63-b9e3-0bfd89c1a21d",
+          "name": "Token service valid",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "service"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"service-nilai\",\n  \"client_secret\": \"{{service_client_secret}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "d788fefa-b2f4-4577-8dc5-3588d526af70",
+          "name": "Token service salah",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "service"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"service-nilai\",\n  \"client_secret\": \"invalid-service-secret\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "949b95b1-61ab-4c00-973d-981149778164",
+          "name": "Token user ke endpoint sinkron",
+          "request": {
+            "url": {
+              "path": [
+                "transkrip",
+                "sinkron"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{dosen_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sync_id\": \"00000000-0000-4000-8000-000000000001\",\n  \"payload_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n  \"kelas_id\": 1,\n  \"entries\": [\n    { \"nim\": \"227006001\", \"nilai_angka\": 90, \"nilai_huruf\": \"A\" }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "555d1109-e52a-48ee-8015-cfd6b35232e6",
+          "name": "Finalisasi kelas",
+          "request": {
+            "url": {
+              "path": [
+                "kelas",
+                "1",
+                "finalisasi"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{dosen_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "1f6bc73f-487a-4365-8d2e-c22b011098aa",
+          "name": "Finalisasi ulang idempotent",
+          "request": {
+            "url": {
+              "path": [
+                "kelas",
+                "1",
+                "finalisasi"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{dosen_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{dosen1_device}}"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "95c6bafe-ee12-486e-974f-84684ba9eea6",
+          "name": "Transkrip mahasiswa sendiri",
+          "request": {
+            "url": {
+              "path": [
+                "transkrip",
+                "227006001"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{mhs1_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "8cf81845-9984-4b98-88c2-ee28e7b2a1b4",
+          "name": "Transkrip mahasiswa lain",
+          "request": {
+            "url": {
+              "path": [
+                "transkrip",
+                "227006002"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{mhs1_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "68e3f72d-a680-49f3-aab4-44b810fac7b3",
+          "name": "Admin membaca transkrip",
+          "request": {
+            "url": {
+              "path": [
+                "transkrip",
+                "227006002"
+              ],
+              "host": [
+                "{{base_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_access_token}}"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "{{admin_device}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "bd7795e5-e13e-4c32-9fcd-03692013b43f",
+          "name": "Akses langsung Service Nilai",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{nilai_service_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "5379d147-ece3-443a-97f4-625cb7da4455",
+          "name": "Akses langsung Service Transkrip",
+          "request": {
+            "url": {
+              "path": [
+                "transkrip",
+                "227006001"
+              ],
+              "host": [
+                "{{transkrip_service_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{mhs1_access_token}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "b1926e4d-6b29-4a91-ad4a-426a2d2f0b2e",
+          "name": "Secret benar tanpa token",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{nilai_service_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-Gateway-Secret",
+                "value": "{{gateway_secret}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        {
+          "id": "5e4ed3ef-24cc-4b42-9ca9-977ee2174a99",
+          "name": "Secret benar dengan token invalid",
+          "request": {
+            "url": {
+              "path": [
+                "nilai"
+              ],
+              "host": [
+                "{{nilai_service_url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "X-Gateway-Secret",
+                "value": "{{gateway_secret}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer token-tidak-valid"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "62b6ed23-e2bb-4c4f-9d04-3f0a61a7c49f",
+        "type": "text/javascript",
+        "exec": [
+          "const name = pm.info.requestName;",
+          "const tokenKeys = {",
+          "  'Nilai mahasiswa sendiri': 'mhs1_access_token', 'Mahasiswa membaca NIM lain': 'mhs1_access_token',",
+          "  'Nilai dosen1': 'dosen_access_token', 'Dosen membaca kelas dosen2': 'dosen_access_token',",
+          "  'Dosen2 mengubah nilai dosen1': 'dosen2_access_token', 'Dosen mengubah nilai': 'dosen_access_token',",
+          "  'Nilai di luar rentang': 'dosen_access_token', 'Device tidak terdaftar': 'mhs1_access_token',",
+          "  'Device hilang': 'mhs1_access_token', 'Endpoint tidak dikenal': 'mhs1_access_token',",
+          "  'Secret client ditimpa gateway': 'mhs1_access_token', 'Token user ke endpoint sinkron': 'dosen_access_token',",
+          "  'Finalisasi kelas': 'dosen_access_token', 'Finalisasi ulang idempotent': 'dosen_access_token',",
+          "  'Transkrip mahasiswa sendiri': 'mhs1_access_token', 'Transkrip mahasiswa lain': 'mhs1_access_token',",
+          "  'Admin membaca nilai': 'admin_access_token', 'Admin membaca transkrip': 'admin_access_token',",
+          "  'Akses langsung Service Nilai': 'mhs1_access_token', 'Akses langsung Service Transkrip': 'mhs1_access_token'",
+          "};",
+          "const loginPasswords = {",
+          "  'Login dosen1': 'dosen1_password', 'Login mahasiswa mhs1': 'mhs1_password',",
+          "  'Login mahasiswa mhs2': 'mhs2_password', 'Login dosen2': 'dosen2_password',",
+          "  'Login admin': 'admin_password', 'Login device salah': 'dosen1_password'",
+          "};",
+          "if (name === 'Login dosen1') {",
+          "  ['dosen_access_token', 'mhs1_access_token', 'mhs2_access_token', 'dosen2_access_token', 'admin_access_token', 'service_access_token', 'dosen_refresh_token', 'nilai_id', 'sync_id'].forEach((key) => pm.collectionVariables.set(key, ''));",
+          "}",
+          "const stopRequest = (message) => {",
+          "  console.error(message);",
+          "  throw new Error(message);",
+          "};",
+          "if (loginPasswords[name] && !String(pm.environment.get(loginPasswords[name]) || '').trim()) {",
+          "  stopRequest(`Environment ${loginPasswords[name]} masih kosong. Isi password seed dari README pada Current Value environment Postman.`);",
+          "}",
+          "if (tokenKeys[name] && !String(pm.collectionVariables.get(tokenKeys[name]) || '').trim()) {",
+          "  stopRequest(`Token ${tokenKeys[name]} belum tersedia. Pastikan request login terkait berhasil dan password environment sudah diisi.`);",
+          "}",
+          "if ((name === 'Token service valid' || name === 'Secret benar tanpa token' || name === 'Secret benar dengan token invalid') && !String(pm.environment.get(name === 'Token service valid' ? 'service_client_secret' : 'gateway_secret') || '').trim()) {",
+          "  const key = name === 'Token service valid' ? 'service_client_secret' : 'gateway_secret';",
+          "  stopRequest(`Environment ${key} masih kosong. Isi Current Value dari .env lokal.`);",
+          "}",
+          "const statuses = {",
+          "  'Login dosen1': 200, 'Login mahasiswa mhs1': 200, 'Login mahasiswa mhs2': 200,",
+          "  'Login dosen2': 200, 'Login admin': 200, 'Login password salah': 401,",
+          "  'Login device salah': 403, 'Refresh token dosen': 200, 'Logout dosen': 200,",
+          "  'Nilai tanpa token': 401, 'Nilai mahasiswa sendiri': 200,",
+          "  'Mahasiswa membaca NIM lain': 403, 'Nilai dosen1': 200,",
+          "  'Dosen membaca kelas dosen2': 403, 'Admin membaca nilai': 403,",
+          "  'Dosen2 mengubah nilai dosen1': 403, 'Dosen mengubah nilai': null,",
+          "  'Nilai di luar rentang': null, 'Device tidak terdaftar': 403,",
+          "  'Device hilang': 403, 'Endpoint tidak dikenal': 403,",
+          "  'Secret client ditimpa gateway': 200, 'Token service valid': 200,",
+          "  'Token service salah': 401, 'Token user ke endpoint sinkron': 403,",
+          "  'Finalisasi kelas': null, 'Finalisasi ulang idempotent': null,",
+          "  'Transkrip mahasiswa sendiri': 200, 'Transkrip mahasiswa lain': 403,",
+          "  'Admin membaca transkrip': 200, 'Akses langsung Service Nilai': 403,",
+          "  'Akses langsung Service Transkrip': 403, 'Secret benar tanpa token': 401,",
+          "  'Secret benar dengan token invalid': 401",
+          "};",
+          "let expected = statuses[name] === undefined ? 200 : statuses[name];",
+          "if (name === 'Dosen mengubah nilai' || name === 'Nilai di luar rentang' || name.startsWith('Finalisasi')) {",
+          "  const wib = new Date(Date.now() + 7 * 60 * 60 * 1000);",
+          "  const minute = wib.getUTCHours() * 60 + wib.getUTCMinutes();",
+          "  const open = minute >= 420 && minute < 1260;",
+          "  expected = name === 'Nilai di luar rentang' ? (open ? 400 : 403) : (open ? 200 : 403);",
+          "}",
+          "pm.variables.set('expected_status', expected);",
+          "const errors = {",
+          "  'Login password salah': 'Kredensial atau device tidak valid',",
+          "  'Login device salah': 'Kredensial atau device tidak valid',",
+          "  'Token user ke endpoint sinkron': 'hanya token service',",
+          "  'Akses langsung Service Nilai': 'X-Gateway-Secret',",
+          "  'Akses langsung Service Transkrip': 'X-Gateway-Secret'",
+          "};",
+          "pm.variables.set('expected_error', errors[name] || '');"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "3ad30cae-ad86-429e-8cce-b003cb323805",
+        "type": "text/javascript",
+        "exec": [
+          "const name = pm.info.requestName;",
+          "const body = pm.response.json();",
+          "pm.test(`HTTP ${pm.variables.get('expected_status')}`, () => pm.response.to.have.status(Number(pm.variables.get('expected_status'))));",
+          "pm.test('Response berupa JSON', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+          "const expectedError = pm.variables.get('expected_error');",
+          "if (expectedError) pm.test('Alasan penolakan sesuai', () => pm.expect(body.error).to.include(expectedError));",
+          "const tokenKeys = {",
+          "  'Login dosen1': 'dosen', 'Login mahasiswa mhs1': 'mhs1',",
+          "  'Login mahasiswa mhs2': 'mhs2', 'Login dosen2': 'dosen2', 'Login admin': 'admin'",
+          "};",
+          "if (tokenKeys[name] && pm.response.code === 200) {",
+          "  const role = tokenKeys[name];",
+          "  pm.collectionVariables.set(`${role}_access_token`, body.access_token);",
+          "  if (body.refresh_token) pm.collectionVariables.set(`${role}_refresh_token`, body.refresh_token);",
+          "  pm.test('Access token dan refresh token diterbitkan', () => {",
+          "    pm.expect(body.access_token).to.be.a('string').and.not.empty;",
+          "    pm.expect(body.refresh_token).to.be.a('string').and.not.empty;",
+          "  });",
+          "}",
+          "if (name === 'Refresh token dosen' && pm.response.code === 200) {",
+          "  pm.collectionVariables.set('dosen_access_token', body.access_token);",
+          "  pm.collectionVariables.set('dosen_refresh_token', body.refresh_token);",
+          "}",
+          "if (name === 'Token service valid' && pm.response.code === 200) {",
+          "  pm.collectionVariables.set('service_access_token', body.access_token);",
+          "  pm.test('Token service berlaku lima menit', () => pm.expect(body.expires_in).to.eql(300));",
+          "}",
+          "if (name === 'Nilai dosen1' && pm.response.code === 200 && body.data.length) {",
+          "  pm.collectionVariables.set('nilai_id', body.data[0].id);",
+          "  pm.test('Dosen hanya menerima kelas yang diampu', () => pm.expect(body.data.every((row) => row.kelas_id === 1)).to.eql(true));",
+          "}",
+          "if (name === 'Nilai mahasiswa sendiri' && pm.response.code === 200) {",
+          "  pm.test('Nilai hanya milik mahasiswa login', () => pm.expect(body.data.every((row) => row.nim === '227006001')).to.eql(true));",
+          "}",
+          "if (name === 'Finalisasi kelas' && pm.response.code === 200) {",
+          "  pm.collectionVariables.set('sync_id', body.sync_id);",
+          "  pm.test('Finalisasi dan sinkronisasi berhasil', () => pm.expect(body.status).to.eql('succeeded'));",
+          "}",
+          "if (name === 'Finalisasi ulang idempotent' && pm.response.code === 200) {",
+          "  pm.test('Retry memakai idempotency key yang sama', () => pm.expect(body.sync_id).to.eql(pm.collectionVariables.get('sync_id')));",
+          "}",
+          "if (name === 'Transkrip mahasiswa sendiri' && pm.response.code === 200) {",
+          "  pm.test('Response memuat daftar transkrip', () => pm.expect(body.transkrip).to.be.an('array'));",
+          "}"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "type": "any",
+      "value": "",
+      "key": "dosen_access_token"
+    },
+    {
+      "type": "any",
+      "value": "",
+      "key": "dosen_refresh_token"
+    },
+    {
+      "type": "any",
+      "value": "",
+      "key": "mhs1_access_token"
+    },
+    {
+      "type": "any",
+      "value": "",
+      "key": "mhs2_access_token"
+    },
+    {
+      "type": "any",
+      "value": "",
+      "key": "dosen2_access_token"
+    },
+    {
+      "type": "any",
+      "value": "",
+      "key": "admin_access_token"
+    },
+    {
+      "type": "any",
+      "value": "",
+      "key": "service_access_token"
+    },
+    {
+      "type": "any",
+      "value": "",
+      "key": "nilai_id"
+    },
+    {
+      "type": "any",
+      "value": "",
+      "key": "sync_id"
+    }
+  ],
+  "info": {
+    "name": "Zero-Trust-Nilai",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Skenario berurutan dan mutatif untuk database tunggal DB_DEMO_NAME (default nilai). Jalankan hanya bila perubahan data dapat diterima. Isi hanya environment lokal Postman dengan kredensial; jangan ekspor environment yang berisi rahasia.",
+      "type": "text/plain"
+    }
+  }
+}

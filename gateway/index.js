@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const config = require('../shared/config');
 const { verifyToken } = require('../shared/verifyToken');
+const asyncRoute = require('../shared/asyncRoute');
+const startServer = require('../shared/startServer');
 const policy = require('./policy');
 const audit = require('./audit');
 const authRouter = require('./auth');
@@ -21,13 +23,13 @@ app.disable('x-powered-by');
 app.use('/auth', express.json({ limit: '10kb' }), authRouter);
 
 // 2) Semua request lain WAJIB melewati guard (PEP): token valid + keputusan Policy Engine
-function guard(req, res, next) {
+async function guard(req, res, next) {
   const base = {
     method: req.method, endpoint: req.path,
     device: req.get('x-device-id') || null, ip: req.ip,
   };
-  const reject = (status, reason, subject = 'anonymous') => {
-    audit.log({ ...base, subject, result: 'deny', reason });
+  const reject = async (status, reason, subject = 'anonymous') => {
+    await audit.log({ ...base, subject, result: 'deny', reason });
     return res.status(status).json({ error: reason });
   };
 
@@ -45,15 +47,15 @@ function guard(req, res, next) {
     return reject(401, reason);
   }
 
-  const subject = policy.describeSubject(claims);
-  const decision = policy.decide({
+  const subject = await policy.describeSubject(claims);
+  const decision = await policy.decide({
     method: req.method, path: req.path, query: req.query, claims, deviceId: base.device,
   });
-  audit.log({ ...base, subject, result: decision.allow ? 'allow' : 'deny', reason: decision.reason });
+  await audit.log({ ...base, subject, result: decision.allow ? 'allow' : 'deny', reason: decision.reason });
   if (!decision.allow) return res.status(decision.status).json({ error: decision.reason });
   next();
 }
-app.use(guard);
+app.use(asyncRoute(guard));
 
 // 3) Setelah ALLOW: teruskan ke service dengan X-Gateway-Secret
 function proxyTo(target, prefixRe) {
@@ -70,6 +72,8 @@ function proxyTo(target, prefixRe) {
         audit.log({
           subject: 'gateway', method: req.method, endpoint: req.path,
           result: 'error', reason: `service tidak dapat dihubungi: ${err.code || err.message}`,
+        }).catch((auditError) => {
+          console.error('[audit] gagal menyimpan error proxy:', auditError.code || 'DB_ERROR');
         });
         if (res.writeHead && !res.headersSent) res.status(502).json({ error: 'Service tidak tersedia' });
       },
@@ -84,11 +88,13 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status && err.status < 500 ? err.status : 500;
   audit.log({
     subject: 'anonymous', method: req.method, endpoint: req.path, device: req.get('x-device-id'),
-    result: 'deny', reason: `request tidak valid: ${err.type || err.message}`,
+    result: 'deny', reason: status === 500 ? 'kesalahan internal' : 'request tidak valid',
+  }).then(() => {
+    res.status(status).json({ error: status === 500 ? 'Kesalahan internal' : 'Request tidak valid' });
+  }).catch((auditError) => {
+    console.error('[audit] gagal menyimpan error request:', auditError.code || 'DB_ERROR');
+    res.status(500).json({ error: 'Kesalahan internal' });
   });
-  res.status(status).json({ error: status === 500 ? 'Kesalahan internal' : 'Request tidak valid' });
 });
 
-const host = process.env.BIND_HOST || '127.0.0.1';
-app.listen(config.ports.gateway, host, () =>
-  console.log(`API Gateway (PEP) aktif di http://${host}:${config.ports.gateway}`));
+startServer(app, 'API Gateway (PEP)', config.ports.gateway);

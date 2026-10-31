@@ -4,3 +4,5 @@ keys/
 data/
 prd.md
 plan.md
+backups/
+postman/*.local.private.postman_environment.json

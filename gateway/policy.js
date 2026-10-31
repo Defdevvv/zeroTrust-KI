@@ -51,7 +51,7 @@ function param(query, key) {
 const RULES = [
   {
     method: 'GET', re: /^\/nilai\/?$/, roles: ['mahasiswa', 'dosen'],
-    check: ({ user, query }) => {
+    check: async ({ user, query }) => {
       if (user.role === 'mahasiswa') {
         const nim = param(query, 'nim');
         if (!nim.ok) return DENY(400, 'parameter nim tidak valid');
@@ -63,7 +63,7 @@ const RULES = [
       const k = param(query, 'kelas_id');
       if (!k.ok || (k.value !== undefined && !/^\d+$/.test(k.value))) return DENY(400, 'parameter kelas_id tidak valid');
       if (k.value !== undefined) {
-        const kelas = sql.kelas.get(Number(k.value));
+        const kelas = await sql.kelas.get(Number(k.value));
         if (!kelas || kelas.dosen_id !== user.id) return DENY(403, 'kelas bukan yang diampu dosen ini');
       }
       return ALLOW('dosen melihat nilai kelas yang diampu');
@@ -71,8 +71,8 @@ const RULES = [
   },
   {
     method: 'PUT', re: /^\/nilai\/(\d+)\/?$/, roles: ['dosen'], hours: true,
-    check: ({ user, match }) => {
-      const n = sql.nilai.get(Number(match[1]));
+    check: async ({ user, match }) => {
+      const n = await sql.nilai.get(Number(match[1]));
       if (!n) return DENY(404, 'data nilai tidak ditemukan');
       if (n.dosen_id !== user.id) return DENY(403, 'kelas bukan yang diampu dosen ini');
       if (n.final) return DENY(403, 'nilai sudah final, tidak dapat diubah');
@@ -81,8 +81,8 @@ const RULES = [
   },
   {
     method: 'POST', re: /^\/kelas\/(\d+)\/finalisasi\/?$/, roles: ['dosen'], hours: true,
-    check: ({ user, match }) => {
-      const kelas = sql.kelas.get(Number(match[1]));
+    check: async ({ user, match }) => {
+      const kelas = await sql.kelas.get(Number(match[1]));
       if (!kelas) return DENY(404, 'kelas tidak ditemukan');
       if (kelas.dosen_id !== user.id) return DENY(403, 'kelas bukan yang diampu dosen ini');
       return ALLOW('dosen memfinalisasi kelas yang diampu (dalam jam akses)');
@@ -106,15 +106,15 @@ const RULES = [
 ];
 
 // ---------- Subjek untuk audit ----------
-function describeSubject(claims) {
+async function describeSubject(claims) {
   if (!claims) return 'anonymous';
   if (claims.role === 'service') return `service:${claims.sub}`;
-  const u = /^\d+$/.test(String(claims.sub)) ? sql.user.get(Number(claims.sub)) : null;
+  const u = /^\d+$/.test(String(claims.sub)) ? await sql.user.get(Number(claims.sub)) : null;
   return u ? `${u.username}(${u.role})` : `unknown(sub=${claims.sub})`;
 }
 
 // ---------- Keputusan ----------
-function decide({ method, path, query, claims, deviceId }) {
+async function decide({ method, path, query, claims, deviceId }) {
   const rule = RULES.find((r) => r.method === method && r.re.test(path));
   if (!rule) return DENY(403, 'tidak ada kebijakan untuk endpoint ini (default deny)');
 
@@ -129,12 +129,12 @@ function decide({ method, path, query, claims, deviceId }) {
     if (claims.sub !== config.serviceClient.id) return DENY(403, 'identitas service tidak dikenal');
   } else {
     // Atribut user dibaca ulang dari DB (bukan dipercaya dari token)
-    user = /^\d+$/.test(String(claims.sub)) ? sql.user.get(Number(claims.sub)) : null;
+    user = /^\d+$/.test(String(claims.sub)) ? await sql.user.get(Number(claims.sub)) : null;
     if (!user) return DENY(403, 'user pada token tidak ditemukan');
     if (user.role !== claims.role) return DENY(403, 'role pada token tidak sesuai dengan data di database');
     // 4.3 Device terdaftar
     if (!deviceId) return DENY(403, 'header X-Device-ID tidak ada');
-    if (!sql.device.get(user.id, deviceId)) return DENY(403, 'device tidak terdaftar untuk user ini');
+    if (!await sql.device.get(user.id, deviceId)) return DENY(403, 'device tidak terdaftar untuk user ini');
   }
 
   // 4.3 Jam akses

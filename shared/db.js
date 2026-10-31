@@ -1,42 +1,75 @@
 'use strict';
-// SQLite memakai modul BAWAAN Node (node:sqlite) -> tidak perlu kompilasi / Visual Studio.
-// Wrapper tipis ini menyediakan API sederhana: exec, pragma, prepare(get/all/run), transaction, close.
-const { DatabaseSync } = require('node:sqlite');
+const mysql = require('mysql2/promise');
 const config = require('./config');
+const { assertSupportedDatabaseVersion } = require('./databaseVersion');
 
-function open(file) {
-  const raw = new DatabaseSync(file);
-  const db = {
-    exec: (sql) => raw.exec(sql),
-    pragma: (text) => raw.exec(`PRAGMA ${text}`),
+config.validateDatabaseConfig();
+
+const pool = mysql.createPool({
+  host: config.db.host,
+  port: config.db.port,
+  user: config.db.user,
+  password: config.db.password,
+  database: config.db.name,
+  waitForConnections: true,
+  connectionLimit: config.db.connectionLimit,
+  charset: 'utf8mb4',
+  timezone: 'Z',
+  decimalNumbers: true,
+});
+
+function createApi(execute, query) {
+  return {
+    async exec(sql) {
+      await query(sql);
+    },
     prepare(sql) {
-      const st = raw.prepare(sql);
       return {
-        get: (...a) => st.get(...a),
-        all: (...a) => st.all(...a),
-        run: (...a) => st.run(...a),
+        async get(...params) {
+          const [rows] = await execute(sql, params);
+          return rows[0];
+        },
+        async all(...params) {
+          const [rows] = await execute(sql, params);
+          return rows;
+        },
+        async run(...params) {
+          const [result] = await execute(sql, params);
+          return result;
+        },
       };
     },
-    // Transaksi: semua berhasil atau semua dibatalkan
-    transaction: (fn) => (...args) => {
-      raw.exec('BEGIN IMMEDIATE');
-      try {
-        const result = fn(...args);
-        raw.exec('COMMIT');
-        return result;
-      } catch (err) {
-        raw.exec('ROLLBACK');
-        throw err;
-      }
-    },
-    close: () => raw.close(),
   };
-  db.pragma('journal_mode = WAL');   // gateway + 2 service boleh akses bersamaan
-  db.pragma('busy_timeout = 5000');
-  db.pragma('foreign_keys = ON');
-  return db;
 }
 
-const db = open(config.dbPath);
-db.open = open;
+const db = createApi(pool.execute.bind(pool), pool.query.bind(pool));
+
+db.transaction = async (operation) => {
+  const connection = await pool.getConnection();
+  const tx = createApi(connection.execute.bind(connection), connection.query.bind(connection));
+  try {
+    await connection.beginTransaction();
+    const result = await operation(tx);
+    await connection.commit();
+    return result;
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    connection.release();
+  }
+};
+
+db.ping = async () => {
+  const connection = await pool.getConnection();
+  try {
+    const [rows] = await connection.query('SELECT DATABASE() AS database_name, VERSION() AS version');
+    assertSupportedDatabaseVersion(rows[0].version);
+    return rows[0];
+  } finally {
+    connection.release();
+  }
+};
+
+db.close = () => pool.end();
 module.exports = db;

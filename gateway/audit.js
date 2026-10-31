@@ -9,9 +9,9 @@ const insert = db.prepare(
 
 const clip = (v, n = 200) => (v == null ? null : String(v).slice(0, n));
 
-function log({ subject = 'anonymous', method, endpoint, device = null, result, reason, ip = null }) {
-  const waktu = new Date().toISOString();
-  insert.run(waktu, clip(subject), method, clip(endpoint), clip(device, 100), result, clip(reason, 300), clip(ip, 60));
+async function log({ subject = 'anonymous', method, endpoint, device = null, result, reason, ip = null }) {
+  const waktu = new Date().toISOString().replace('T', ' ').replace('Z', '');
+  await insert.run(waktu, clip(subject), method, clip(endpoint), clip(device, 100), result, clip(reason, 300), clip(ip, 60));
   const tag = result === 'allow' ? 'ALLOW' : result.toUpperCase();
   console.log(`${waktu} ${tag.padEnd(5)} ${subject} ${method} ${endpoint} dev=${device || '-'} :: ${reason}`);
 }
