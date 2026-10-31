@@ -120,13 +120,13 @@ Semua mahasiswa memiliki nilai pada dua kelas seed. Client token service menggun
 
 ## Postman
 
-Impor [Collection](postman/Zero-Trust-Nilai.postman_collection.json) dan [environment Laragon](postman/Laragon-Local.postman_environment.json), pilih environment tersebut, lalu jalankan collection melalui Collection Runner. Collection mengelola token/ID runtime dan menguji allow/deny, role, ownership, device, refresh/logout, sinkronisasi, serta penolakan akses langsung service.
+Ikuti [Panduan Pengujian Postman](docs/POSTMAN.md) untuk impor Collection dan environment, menyiapkan Current Value, menjalankan skenario, serta membaca payload dan response. Collection menguji allow/deny, role, ownership, device, refresh/logout, sinkronisasi, dan penolakan akses langsung service.
 
 Sebelum Collection Runner:
 
 1. Pastikan Laragon aktif, `npm run setup`/migrasi dan seed selesai, dan ketiga service aktif.
 2. Collection Runner menggunakan database `nilai` yang sama dengan aplikasi dan memiliki request mutatif. Jalankan hanya bila perubahan data dapat diterima; `npm run reset-db` dapat mengembalikan seed tetapi menghapus seluruh data aplikasi.
-3. Impor ulang Collection [Zero-Trust-Nilai.postman_collection.json](postman/Zero-Trust-Nilai.postman_collection.json) dan environment [Laragon-Local.postman_environment.json](postman/Laragon-Local.postman_environment.json). Pilih environment `Laragon Local`, lalu isi bagian **Current Value** untuk `admin_password`, `dosen1_password`, `dosen2_password`, `mhs1_password`, dan `mhs2_password` memakai password seed yang tercantum di README. Isi juga `service_client_secret` dari `SERVICE_CLIENT_SECRET` dan `gateway_secret` dari `GATEWAY_SECRET` pada `.env` lokal. Nilai password/secret memang kosong pada file yang dibagikan dan tidak otomatis diambil dari `.env`. Jika variabel belum diisi, Collection menampilkan error pre-request yang menunjuk variabel yang kosong; jangan lanjutkan pengujian terlindungi sampai login berhasil dan token terisi. Jangan mengekspor atau membagikan environment yang berisi nilai tersebut atau menyimpan nilai itu pada file yang dilacak. Jika membutuhkan file lokal terpisah, gunakan nama `postman/Laragon-Local.local.private.postman_environment.json` (di-ignore Git).
+3. Impor Collection dan environment, pilih `Laragon Local`, lalu isi **Current Value** sesuai instruksi [Panduan Pengujian Postman](docs/POSTMAN.md). Password dan secret memang kosong pada file environment yang dibagikan dan tidak otomatis diambil dari `.env`. Jika variabel wajib kosong, Collection menampilkan error pre-request yang menyebut variabel tersebut.
 4. Pastikan jam akses server terbuka untuk skenario perubahan/finalisasi. Jika di luar jadwal, skenario itu semestinya ditolak dengan 403. Untuk mendemokan sukses, ubah `config/policy.json` sementara dan kembalikan setelahnya.
 
 Postman tidak melakukan reset database secara tersembunyi. Request langsung ke port service hanya merupakan tes penolakan bypass; semua alur client dan sinkronisasi tetap melewati gateway.
@@ -145,4 +145,4 @@ Postman tidak melakukan reset database secara tersembunyi. Request langsung ke p
 
 ## Panduan demo
 
-Lihat [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md) untuk alur video 6–9 menit, termasuk autentikasi, policy, device/jam, gateway secret, sinkronisasi, audit, dan Collection Runner.
+Lihat [docs/POSTMAN.md](docs/POSTMAN.md) untuk langkah pengujian Postman, skenario allow/deny, contoh payload dan response, serta troubleshooting.
